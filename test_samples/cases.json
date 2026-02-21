@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "log_smoke_001",
+      "doc_type": "日志",
+      "text": "今日巡查发现临边防护不到位，已要求施工单位立即整改，计划明日复查。",
+      "expected": {
+        "min_total": 0,
+        "max_total": 20
+      }
+    },
+    {
+      "id": "xunshi_smoke_001",
+      "doc_type": "巡视",
+      "text": "现场巡视未见明显安全隐患，施工秩序正常。",
+      "expected": {
+        "forbidden_categories": [
+          "closure_issues"
+        ],
+        "min_total": 0,
+        "max_total": 20
+      }
+    }
+  ]
+}

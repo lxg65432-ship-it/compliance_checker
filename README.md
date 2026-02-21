@@ -11,6 +11,19 @@
 
 > 说明：如果要识别图片文字，需要额外安装 Tesseract OCR（Windows 默认路径通常为 `C:\Program Files\Tesseract-OCR\tesseract.exe`）。
 
+## 样例评估（误报/漏报）
+1. 编辑样例文件：`test_samples/cases.json`
+2. 运行评估：
+   `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.json`
+3. 查看评估报告：
+   `test_samples/last_eval_report.json`
+
+`expected` 字段支持的主要约束：
+- `required_categories` / `forbidden_categories`
+- `required_titles_contains` / `forbidden_titles_contains`
+- `min_total` / `max_total`
+- `min_high` / `max_high` / `min_medium` / `max_medium` / `min_low` / `max_low`
+
 ## Plan 自动同步
 本项目支持将计划文档自动提交并推送到 Git 远端，默认仅处理 `docs/*plan*.md`。
 
