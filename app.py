@@ -5,6 +5,7 @@ import streamlit as st
 from rules_loader import load_rules
 from checker import run_checks
 from ai_helper import ai_review_enabled, ai_review
+from report_exporter import build_docx_report
 
 st.set_page_config(page_title="监理文书合规校验 V1", layout="wide")
 
@@ -19,6 +20,7 @@ with st.sidebar:
     st.markdown("把 `rules_v1.xlsx` 放在同一文件夹，最省事。")
 
 col1, col2 = st.columns([1.2, 1])
+source_label = "manual"
 
 with col1:
     st.subheader("上传日志/巡视文件（可选）")
@@ -29,6 +31,7 @@ with col1:
 
     if uploaded is not None:
         extracted_text, source = extract_text_from_upload(uploaded)
+        source_label = source
 
         if extracted_text.strip():
             st.success(f"已从文件提取文本（来源：{source}），并自动填入下方文本框。")
@@ -117,13 +120,21 @@ with col2:
         st.markdown("### 可复制建议句")
         st.code("\n".join(report.get("copy_ready_suggestions", [])), language="text")
 
-        st.markdown("### 导出报告（JSON）")
+        st.markdown("### 导出报告")
         json_str = json.dumps(report, ensure_ascii=False, indent=2)
+        docx_data = build_docx_report(report, doc_type=doc_type, source=source_label)
         st.download_button(
             label="下载 JSON 报告",
             data=json_str.encode("utf-8"),
             file_name="compliance_report.json",
             mime="application/json",
+            use_container_width=True,
+        )
+        st.download_button(
+            label="下载 Word 报告（DOCX）",
+            data=docx_data,
+            file_name="compliance_report.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             use_container_width=True,
         )
         st.code(json_str, language="json")

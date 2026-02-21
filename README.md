@@ -10,6 +10,7 @@
    `streamlit run app.py`
 
 > 说明：如果要识别图片文字，需要额外安装 Tesseract OCR（Windows 默认路径通常为 `C:\Program Files\Tesseract-OCR\tesseract.exe`）。
+> 报告导出：校验完成后可下载 `JSON` 与 `Word（DOCX）` 两种格式。
 
 ## 样例评估（误报/漏报）
 1. 编辑样例文件：`test_samples/cases.json`
