@@ -1,5 +1,16 @@
 ﻿# compliance_checker
 
+## 快速开始
+1. 创建并激活虚拟环境（Windows）：
+   `python -m venv .venv`
+   `.venv\Scripts\activate`
+2. 安装依赖：
+   `pip install -r requirements.txt`
+3. 启动应用：
+   `streamlit run app.py`
+
+> 说明：如果要识别图片文字，需要额外安装 Tesseract OCR（Windows 默认路径通常为 `C:\Program Files\Tesseract-OCR\tesseract.exe`）。
+
 ## Plan 自动同步
 本项目支持将计划文档自动提交并推送到 Git 远端，默认仅处理 `docs/*plan*.md`。
 

@@ -1,4 +1,4 @@
-from file_extractors import extract_text_from_upload
+﻿from file_extractors import extract_text_from_upload
 import json
 import streamlit as st
 
@@ -9,14 +9,14 @@ from ai_helper import ai_review_enabled, ai_review
 st.set_page_config(page_title="监理文书合规校验 V1", layout="wide")
 
 st.title("监理文书合规校验系统 V1（市政/公路）")
-st.caption("不改模板，只核查内容：缺失项｜风险用词｜闭环｜逻辑冲突")
+st.caption("不改模板，只核查内容：缺失项 / 风险用词 / 闭环问题 / 逻辑冲突")
 
 with st.sidebar:
     st.header("设置")
     rules_path = st.text_input("规则库文件", value="rules_v1.xlsx")
     doc_type = st.selectbox("文书类型", ["日志", "巡视"])
     st.divider()
-    st.markdown("把 rules_v1.xlsx 放在同一文件夹，最省事。")
+    st.markdown("把 `rules_v1.xlsx` 放在同一文件夹，最省事。")
 
 col1, col2 = st.columns([1.2, 1])
 
@@ -31,13 +31,19 @@ with col1:
         extracted_text, source = extract_text_from_upload(uploaded)
 
         if extracted_text.strip():
-            st.success(f"已从文件提取文本（来源：{source}），已自动填入下方文本框。")
+            st.success(f"已从文件提取文本（来源：{source}），并自动填入下方文本框。")
             st.session_state["input_text"] = extracted_text
         else:
             if source == "image_no_ocr":
-                st.warning("检测到图片，但当前环境未启用 OCR（pytesseract/Tesseract）。请先安装 OCR，或手动复制图片文字到下方文本框。")
+                st.warning(
+                    "检测到图片，但当前环境未启用 OCR（pytesseract/Tesseract）。"
+                    "请先安装 OCR，或手动复制图片文字到下方文本框。"
+                )
             elif source == "pdf":
-                st.warning("PDF 可能是扫描版图片，未能直接提取文本。建议启用 OCR 或将内容复制到下方文本框。")
+                st.warning(
+                    "PDF 可能是扫描版图片，未能直接提取文本。"
+                    "建议启用 OCR 或将内容复制到下方文本框。"
+                )
             elif source == "unsupported":
                 st.warning("暂不支持该文件类型，请转换为 PDF/DOCX/TXT/图片。")
             else:
@@ -48,14 +54,14 @@ with col1:
         "粘贴文书内容",
         key="input_text",
         height=260,
-        placeholder="也可以先上传文件自动识别，再在这里补充/修改…",
+        placeholder="也可以先上传文件自动识别，再在这里补充/修改。",
     )
 
     run_btn = st.button("开始校验", type="primary", use_container_width=True)
 
 with col2:
     st.subheader("输出报告")
-    st.write("等待校验…")
+    st.write("等待校验...")
 
     if run_btn:
         if not str(text).strip():
@@ -74,7 +80,9 @@ with col2:
             report["ai_review"] = ai_review(doc_type, text, report)
 
         s = report["summary"]
-        st.success(f"校验完成：共 {s['total']} 条提示（高 {s['high']}｜中 {s['medium']}｜低 {s['low']}）")
+        st.success(
+            f"校验完成：共 {s['total']} 条提示（高 {s['high']} / 中 {s['medium']} / 低 {s['low']}）"
+        )
 
         findings = report["findings"]
         if not findings:
@@ -91,7 +99,7 @@ with col2:
                 st.markdown(f"### {title}（{len(items)}）")
                 for i, f in enumerate(items, 1):
                     sev = f["severity"]
-                    badge = "🟥" if sev == "高" else ("🟧" if sev == "中" else "⬜")
+                    badge = "🔴" if sev == "high" else ("🟠" if sev == "medium" else "🟢")
                     st.markdown(f"**{badge} {i}. {f['title']}**")
                     if f.get("quote"):
                         st.write(f"触发：{f['quote']}")
@@ -116,6 +124,6 @@ with col2:
             data=json_str.encode("utf-8"),
             file_name="compliance_report.json",
             mime="application/json",
-            use_container_width=True
+            use_container_width=True,
         )
         st.code(json_str, language="json")

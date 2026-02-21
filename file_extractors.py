@@ -1,7 +1,8 @@
-# file_extractors.py
+﻿# file_extractors.py
 from __future__ import annotations
-from typing import Tuple
+
 import io
+from typing import Tuple
 
 
 def extract_text_from_upload(uploaded_file) -> Tuple[str, str]:
@@ -45,24 +46,19 @@ def extract_text_from_upload(uploaded_file) -> Tuple[str, str]:
     if name.endswith((".png", ".jpg", ".jpeg", ".webp")):
         try:
             import pytesseract
-            from PIL import Image   # ✅ 必须加这个
+            from PIL import Image
 
-            # 指定 tesseract 路径（最稳）
+            # 指定 tesseract 路径（按需调整）
             pytesseract.pytesseract.tesseract_cmd = (
                 r"C:\Program Files\Tesseract-OCR\tesseract.exe"
             )
 
             img = Image.open(io.BytesIO(uploaded_file.getvalue()))
-
-            text = pytesseract.image_to_string(
-                img,
-                lang="chi_sim+eng"
-            )
-
+            text = pytesseract.image_to_string(img, lang="chi_sim+eng")
             return (text or "").strip(), "image_ocr"
 
         except Exception as e:
-            print("OCR error:", e)   # 调试用
+            print("OCR error:", e)
             return "", "image_no_ocr"
 
     return "", "unsupported"
