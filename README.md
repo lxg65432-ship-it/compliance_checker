@@ -19,6 +19,14 @@
 3. 查看评估报告：
    `test_samples/last_eval_report.json`
 
+### 真实样本快速接入
+1. 把真实日志/巡视样本放到：`test_samples/raw/`（支持 txt/md/docx/pdf）。
+2. 生成评估用例草稿：
+   `python .\scripts\build_cases_from_raw.py --raw-dir test_samples/raw --output test_samples/cases.generated.json`
+3. 手工补充每条 case 的 `expected` 断言（按你对误报/漏报的判断）。
+4. 执行评估：
+   `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.generated.json --output test_samples/last_eval_report.json`
+
 `expected` 字段支持的主要约束：
 - `required_categories` / `forbidden_categories`
 - `required_titles_contains` / `forbidden_titles_contains`

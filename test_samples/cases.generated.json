@@ -1,0 +1,20 @@
+{
+  "cases": [
+    {
+      "id": "raw_001_log_demo_001",
+      "doc_type": "日志",
+      "text": "﻿今日现场日志：已检查临边防护，发现个别区域警示不足，已要求施工单位整改并安排复查。",
+      "expected": {
+        "min_total": 0,
+        "max_total": 50,
+        "required_categories": [],
+        "forbidden_categories": [],
+        "required_titles_contains": [],
+        "forbidden_titles_contains": []
+      },
+      "meta": {
+        "source_file": "log_demo_001.txt"
+      }
+    }
+  ]
+}
