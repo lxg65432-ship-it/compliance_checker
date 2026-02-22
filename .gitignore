@@ -2,3 +2,4 @@
 *.py[cod]
 .codex-auto-push/
 ~$*.xlsx
+test_samples/last_eval_report*.json

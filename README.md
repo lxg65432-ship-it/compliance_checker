@@ -31,6 +31,8 @@
 - 回归用例：`test_samples/cases.regression.json`
 - 执行命令：
   `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.regression.json --output test_samples/last_eval_report.regression.json`
+- 一键命令（PowerShell）：
+  `powershell -ExecutionPolicy Bypass -File .\scripts\run_regression.ps1`
 
 `expected` 字段支持的主要约束：
 - `required_categories` / `forbidden_categories`
