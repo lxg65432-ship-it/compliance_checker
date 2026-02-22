@@ -1,0 +1,86 @@
+{
+  "cases": [
+    {
+      "id": "reg_001_negated_issue_xunshi",
+      "doc_type": "巡视",
+      "text": "今日巡视未发现安全隐患，现场秩序正常，临边防护基本到位。",
+      "expected": {
+        "forbidden_categories": [
+          "risky_phrases",
+          "closure_issues"
+        ],
+        "min_total": 0,
+        "max_total": 50
+      }
+    },
+    {
+      "id": "reg_002_issue_without_closure",
+      "doc_type": "日志",
+      "text": "现场检查发现隐患，脚手架局部防护不到位，要求施工班组立即整改。",
+      "expected": {
+        "required_categories": [
+          "closure_issues"
+        ],
+        "required_titles_contains": [
+          "问题闭环不完整"
+        ],
+        "min_total": 1,
+        "max_total": 50
+      }
+    },
+    {
+      "id": "reg_003_issue_with_closure",
+      "doc_type": "日志",
+      "text": "现场检查发现问题，已要求施工单位整改。今日复查确认整改完成，现场状态受控。",
+      "expected": {
+        "forbidden_categories": [
+          "closure_issues"
+        ],
+        "min_total": 0,
+        "max_total": 50
+      }
+    },
+    {
+      "id": "reg_004_risky_phrase_explicit",
+      "doc_type": "巡视",
+      "text": "现场存在严重隐患，需立即处理。",
+      "expected": {
+        "required_categories": [
+          "risky_phrases"
+        ],
+        "required_titles_contains": [
+          "风险用词"
+        ],
+        "min_high": 1,
+        "max_total": 50
+      }
+    },
+    {
+      "id": "reg_005_logic_conflict_rain_concrete",
+      "doc_type": "日志",
+      "text": "今日大雨，现场组织混凝土浇筑作业，采取临时遮雨措施。",
+      "expected": {
+        "required_categories": [
+          "logic_warnings"
+        ],
+        "min_total": 1,
+        "max_total": 50
+      }
+    },
+    {
+      "id": "reg_006_conditional_missing_requirements",
+      "doc_type": "日志",
+      "text": "今日开展混凝土浇筑施工，完成底板混凝土泵送作业。",
+      "expected": {
+        "required_categories": [
+          "missing_items"
+        ],
+        "required_titles_contains": [
+          "条件必填缺失"
+        ],
+        "min_total": 1,
+        "max_total": 50
+      }
+    }
+  ]
+}

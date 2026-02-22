@@ -27,6 +27,11 @@
 4. 执行评估：
    `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.generated.json --output test_samples/last_eval_report.json`
 
+### 内置回归集（推荐每次改规则后执行）
+- 回归用例：`test_samples/cases.regression.json`
+- 执行命令：
+  `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.regression.json --output test_samples/last_eval_report.regression.json`
+
 `expected` 字段支持的主要约束：
 - `required_categories` / `forbidden_categories`
 - `required_titles_contains` / `forbidden_titles_contains`
