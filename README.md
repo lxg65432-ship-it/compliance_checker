@@ -33,6 +33,9 @@
   `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.regression.json --output test_samples/last_eval_report.regression.json`
 - 一键命令（PowerShell）：
   `powershell -ExecutionPolicy Bypass -File .\scripts\run_regression.ps1`
+- 推送前自动检查（安装 Git Hook）：
+  `powershell -ExecutionPolicy Bypass -File .\scripts\install_git_hooks.ps1`
+  安装后每次 `git push` 会自动执行回归；失败则拦截推送。
 
 `expected` 字段支持的主要约束：
 - `required_categories` / `forbidden_categories`

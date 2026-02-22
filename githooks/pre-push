@@ -1,0 +1,11 @@
+#!/bin/sh
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -z "$REPO_ROOT" ]; then
+  echo "[pre-push] Unable to resolve repo root."
+  exit 1
+fi
+
+powershell -NoProfile -ExecutionPolicy Bypass -File "$REPO_ROOT/scripts/pre_push_check.ps1"
+exit $?
+
