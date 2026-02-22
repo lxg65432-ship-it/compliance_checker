@@ -45,6 +45,24 @@ def _normalize_severity(sev: str, default: str = "medium") -> str:
     return SEV_ALIASES.get(raw, SEV_ALIASES.get(str(sev).strip(), default))
 
 
+def _is_negated_mention(text: str, phrase: str) -> bool:
+    """
+    判断某个词是否出现在“否定语境”中，避免误报：
+    例如：未见安全隐患、未发现问题、无隐患、没有问题。
+    """
+    t = _norm_text(text)
+    p = str(phrase or "").strip()
+    if not p:
+        return False
+
+    escaped = re.escape(p)
+    patterns = [
+        rf"(未见|未发现|未查见|无|没有|未出现)[^。；;\n]{{0,8}}{escaped}",
+        rf"{escaped}[^。；;\n]{{0,8}}(未见|未发现|无|没有)",
+    ]
+    return any(re.search(ptn, t) for ptn in patterns)
+
+
 def _is_same_doc_type(rule_doc_type: str, current_doc_type: str) -> bool:
     v = str(rule_doc_type or "").strip()
     if not v:
@@ -152,6 +170,9 @@ def check_forbidden_phrases(doc_type: str, text: str, df_forbidden) -> list[Find
             continue
 
         if phrase in t:
+            # “未见/无/未发现 + 词语”场景不按风险词处理，避免误报。
+            if _is_negated_mention(t, phrase):
+                continue
             severity = _normalize_severity(row.get("severity", "中"), default="medium")
             risk_reason = str(row.get("risk_reason", "")).strip()
             safe_replace = str(row.get("safe_replace", "")).strip()
@@ -184,7 +205,7 @@ def check_closure(doc_type: str, text: str, df_closure) -> list[Finding]:
         if not issue_words:
             continue
 
-        issue_hit = any(w in t for w in issue_words)
+        issue_hit = any((w in t) and (not _is_negated_mention(t, w)) for w in issue_words)
         if not issue_hit:
             continue
 
