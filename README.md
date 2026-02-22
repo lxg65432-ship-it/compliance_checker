@@ -23,8 +23,10 @@
 1. 把真实日志/巡视样本放到：`test_samples/raw/`（支持 txt/md/docx/pdf）。
 2. 生成评估用例草稿：
    `python .\scripts\build_cases_from_raw.py --raw-dir test_samples/raw --output test_samples/cases.generated.json`
-3. 手工补充每条 case 的 `expected` 断言（按你对误报/漏报的判断）。
-4. 执行评估：
+3. 生成“标注包”（自动附带当前规则命中结果）：
+   `python .\scripts\build_review_pack.py --rules rules_v1.xlsx --cases test_samples/cases.generated.json --output test_samples/cases.review_pack.json --todo-md test_samples/review_todo.md`
+4. 手工补充每条 case 的 `expected` 断言（按你对误报/漏报的判断）。
+5. 执行评估：
    `python .\scripts\evaluate_samples.py --rules rules_v1.xlsx --cases test_samples/cases.generated.json --output test_samples/last_eval_report.json`
 
 ### 内置回归集（推荐每次改规则后执行）
@@ -36,6 +38,8 @@
 - 推送前自动检查（安装 Git Hook）：
   `powershell -ExecutionPolicy Bypass -File .\scripts\install_git_hooks.ps1`
   安装后每次 `git push` 会自动执行回归；失败则拦截推送。
+- 生成规则调优分流清单：
+  `python .\scripts\triage_eval_report.py --report test_samples/last_eval_report.regression.json --output test_samples/regression_triage.md`
 
 `expected` 字段支持的主要约束：
 - `required_categories` / `forbidden_categories`

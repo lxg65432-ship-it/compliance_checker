@@ -69,6 +69,11 @@ def build_docx_report(report: dict[str, Any], doc_type: str, source: str = "manu
         for i, s in enumerate(suggestions, 1):
             doc.add_paragraph(f"{i}. {s}")
 
+    rewrite = str(report.get("full_text_rewrite", "") or "").strip()
+    if rewrite:
+        doc.add_heading("四、建议替换后的完整日志（草案）", level=2)
+        doc.add_paragraph(rewrite)
+
     buf = BytesIO()
     doc.save(buf)
     return buf.getvalue()

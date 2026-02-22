@@ -120,6 +120,13 @@ with col2:
         st.markdown("### 可复制建议句")
         st.code("\n".join(report.get("copy_ready_suggestions", [])), language="text")
 
+        st.markdown("### 建议替换后的完整日志（草案）")
+        st.text_area(
+            "可直接复制后再按项目实际补充具体数值/部位",
+            value=report.get("full_text_rewrite", ""),
+            height=220,
+        )
+
         st.markdown("### 导出报告")
         json_str = json.dumps(report, ensure_ascii=False, indent=2)
         docx_data = build_docx_report(report, doc_type=doc_type, source=source_label)

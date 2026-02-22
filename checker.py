@@ -97,6 +97,11 @@ def check_required_fields(doc_type: str, text: str, df_required) -> list[Finding
         field = str(row.get("field", "")).strip()
         severity = _normalize_severity(row.get("severity", "中"), default="medium")
         hint = str(row.get("hint", "")).strip()
+        suggestion_text = hint
+        if suggestion_text.startswith("缺少"):
+            suggestion_text = f"建议补充：{suggestion_text.replace('缺少', '', 1).strip()}"
+        elif suggestion_text and not suggestion_text.startswith(("建议", "请")):
+            suggestion_text = f"建议补充：{suggestion_text}"
 
         keys = _split_keywords(row.get("keywords_any", ""))
         if not keys:
@@ -110,7 +115,7 @@ def check_required_fields(doc_type: str, text: str, df_required) -> list[Finding
                     severity=severity,
                     title=f"缺少：{field}",
                     reason=hint or f"未检测到与“{field}”相关的关键词。",
-                    suggestion=hint,
+                    suggestion=suggestion_text,
                 )
             )
     return findings
@@ -136,12 +141,25 @@ def check_conditional_required(doc_type: str, text: str, df_cond) -> list[Findin
 
         severity = _normalize_severity(row.get("severity", "中"), default="medium")
         hint = str(row.get("hint", "")).strip()
+        rule_code = str(row.get("rule_code", "")).strip().lower()
 
         trig_hit = any(k in t for k in trigger_any)
         if not trig_hit:
             continue
 
         req_hit = any(k in t for k in required_any)
+
+        # 特殊规则：正常施工作业应体现管理人员与工人数量。
+        if rule_code == "personnel_count":
+            mgmt_hit = bool(re.search(r"(现场管理人员|管理人员|管理岗|监理人员)", t))
+            worker_hit = bool(re.search(r"(工人|作业人员|施工人员)", t))
+            count_hit = bool(re.search(r"([0-9]+|[一二三四五六七八九十百]+)\s*(名|人)", t))
+            req_hit = mgmt_hit and worker_hit and count_hit
+
+        # 特殊规则：高风险作业应体现安全管理人员/安全员。
+        if rule_code == "safety_personnel":
+            req_hit = bool(re.search(r"(安全员|专职安全员|安全管理人员)", t))
+
         if not req_hit:
             findings.append(
                 Finding(
@@ -264,12 +282,58 @@ def check_logic_conflicts(doc_type: str, text: str, df_logic) -> list[Finding]:
     return findings
 
 
+def _normalize_conditional_rules(df_cond):
+    """
+    运行时修正规则，确保人员规则符合当前业务要求：
+    1) 正常施工作业必须体现管理人员和工人数量；
+    2) 高风险作业必须体现安全员/安全管理人员；
+    3) 吊装触发词去除“安装”避免误报。
+    """
+    if df_cond is None:
+        return None
+
+    df = df_cond.copy()
+    if "rule_code" not in df.columns:
+        df["rule_code"] = ""
+
+    trig = df["trigger_any"].astype(str)
+
+    mask_hoist = trig.str.contains("吊装/起重/安装", regex=False)
+    df.loc[mask_hoist, "trigger_any"] = "吊装/起重/吊车/起重机/吊运"
+    df.loc[mask_hoist, "required_any"] = "吊车/起重机/吊装/指挥/警戒"
+    df.loc[mask_hoist, "hint"] = "吊装作业建议体现起重设备、指挥警戒及安全管理人员"
+
+    mask_person = trig.str.contains("施工/作业/浇筑/摊铺/开挖/吊装/张拉/压实/焊接/切割", regex=False)
+    df.loc[mask_person, "required_any"] = "现场管理人员/工人/作业人员/施工人员/名/人"
+    df.loc[mask_person, "hint"] = "建议补充现场人员数量：管理人员X名、工人X名"
+    df.loc[mask_person, "rule_code"] = "personnel_count"
+
+    mask_xs = trig.str.contains("巡视/检查/整改/隐患/问题", regex=False)
+    df.loc[mask_xs, "required_any"] = "施工单位/责任人/管理人员/安全员"
+    df.loc[mask_xs, "hint"] = "建议体现责任主体及现场管理/安全人员信息"
+
+    has_safety_rule = (df["rule_code"].astype(str).str.lower() == "safety_personnel").any()
+    if not has_safety_rule:
+        row = {c: "" for c in df.columns}
+        row["doc_type"] = "日志"
+        row["trigger_any"] = "吊装/起重/高处/临边/深基坑/开挖/夜间施工/爆破/切割"
+        row["required_any"] = "安全员/专职安全员/安全管理人员"
+        row["severity"] = "高"
+        row["hint"] = "高风险作业建议体现安全管理人员或安全员在场情况"
+        row["tag"] = "人员配置"
+        row["priority"] = "P0"
+        row["rule_code"] = "safety_personnel"
+        df.loc[len(df)] = row
+
+    return df
+
+
 def run_checks(doc_type: str, text: str, rules: dict[str, Any]) -> dict[str, Any]:
     df_required = rules["required_fields"]
     df_forbidden = rules["forbidden_phrases"]
     df_closure = rules["closure_rules"]
     df_logic = rules["logic_conflicts"]
-    df_cond = rules.get("conditional_required")
+    df_cond = _normalize_conditional_rules(rules.get("conditional_required"))
 
     findings: list[Finding] = []
     findings += check_required_fields(doc_type, text, df_required)
@@ -303,6 +367,7 @@ def run_checks(doc_type: str, text: str, rules: dict[str, Any]) -> dict[str, Any
             for f in findings
         ],
         "copy_ready_suggestions": _make_copy_ready_suggestions(findings),
+        "full_text_rewrite": _make_full_text_rewrite(doc_type, text, findings),
     }
     return out
 
@@ -328,3 +393,53 @@ def _make_copy_ready_suggestions(findings: list[Finding]) -> list[str]:
             s.append(d)
             seen.add(d)
     return s[:12]
+
+
+def _make_full_text_rewrite(doc_type: str, text: str, findings: list[Finding]) -> str:
+    """
+    生成可直接替换的日志草案：
+    - 保留原文；
+    - 追加针对命中问题的“完善段落”；
+    - 避免只给碎片化建议句。
+    """
+    base = _norm_text(text)
+    if not base:
+        return ""
+
+    enhanced_lines: list[str] = []
+    seen = set()
+
+    has_missing_site = False
+    has_personnel_missing = False
+    has_closure_issue = False
+
+    for f in findings:
+        title = str(f.title or "")
+        quote = str(f.quote or "")
+
+        if "缺少：施工部位" in title:
+            has_missing_site = True
+
+        if "条件必填缺失" in title and any(k in quote for k in ("施工", "作业", "浇筑")):
+            has_personnel_missing = True
+
+        if f.category == "closure_issues":
+            has_closure_issue = True
+
+    if has_missing_site:
+        enhanced_lines.append("施工部位：请补充明确位置（如：X区X轴线/X楼层X作业面/桩号KX+XXX段）。")
+
+    if has_personnel_missing:
+        enhanced_lines.append("现场人员：管理人员X名（监理X名、施工管理X名），作业人员X名。")
+
+    if has_closure_issue:
+        enhanced_lines.append("整改闭环：已要求施工单位整改，并于X时复查，整改完成，满足要求。")
+
+    # 兜底：若没有结构化增强项，仍提供一条可直接替换的收尾完善句。
+    if not enhanced_lines:
+        enhanced_lines.append("补充记录：现场检查总体受控，后续将持续跟踪并复查关键工序落实情况。")
+
+    suffix = "\n".join(enhanced_lines)
+    if base.endswith(("。", "！", "？")):
+        return f"{base}\n{suffix}"
+    return f"{base}。\n{suffix}"
