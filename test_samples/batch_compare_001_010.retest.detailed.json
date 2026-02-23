@@ -1,0 +1,936 @@
+{
+  "meta": {
+    "count": 10
+  },
+  "results": [
+    {
+      "id": "raw_017_batch_case_001",
+      "case_code": "case_001",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 10
+      },
+      "items": [
+        {
+          "expected": "大雨天气仍进行吊装作业",
+          "expected_tags": [
+            "weather_risk"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "恶劣天气施工风险",
+            "category": "logic_warnings"
+          },
+          "evidence": "恶劣天气施工风险 | 检测到恶劣天气下仍继续高风险作业，存在较大安全风险。 | 建议补充：停工或风险评估结论、专项审批及现场防护措施。 | 恶劣天气/高风险作业/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "积水未处理到位",
+          "expected_tags": [
+            "water_logging"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "积水处置不足",
+            "category": "logic_warnings"
+          },
+          "evidence": "积水处置不足 | 检测到现场存在积水，但未体现有效处置或复查结论。 | 建议补充：排水措施、完成时点和复查结果。 | 积水/未处置记录",
+          "gap_reason": ""
+        },
+        {
+          "expected": "高空作业防护措施不完善",
+          "expected_tags": [
+            "height_protection"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "恶劣天气施工风险",
+            "category": "logic_warnings"
+          },
+          "evidence": "恶劣天气施工风险 | 检测到恶劣天气下仍继续高风险作业，存在较大安全风险。 | 建议补充：停工或风险评估结论、专项审批及现场防护措施。 | 恶劣天气/高风险作业/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "未提专项方案审批情况",
+          "expected_tags": [
+            "special_plan"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "恶劣天气施工风险",
+            "category": "logic_warnings"
+          },
+          "evidence": "恶劣天气施工风险 | 检测到恶劣天气下仍继续高风险作业，存在较大安全风险。 | 建议补充：停工或风险评估结论、专项审批及现场防护措施。 | 恶劣天气/高风险作业/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "张拉数据缺失",
+          "expected_tags": [
+            "tension_data"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "张拉关键数据缺失",
+            "category": "missing_items"
+          },
+          "evidence": "张拉关键数据缺失 | 检测到张拉作业但缺少关键过程数据，质量判定依据不足。 | 建议补充：张拉力、伸长量、回缩量、持荷及记录表。 | 张拉/数据缺失",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "恶劣天气施工风险",
+        "风险处置升级不足",
+        "高处隐患停工闭环不足",
+        "条件必填缺失",
+        "条件必填缺失",
+        "临电安全隐患处置不足",
+        "结论与问题描述可能不一致",
+        "积水处置不足",
+        "条件必填缺失",
+        "张拉关键数据缺失"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_018_batch_case_002",
+      "case_code": "case_002",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 7
+      },
+      "items": [
+        {
+          "expected": "未填写混凝土强度等级",
+          "expected_tags": [
+            "concrete_param"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "条件必填缺失",
+            "category": "missing_items"
+          },
+          "evidence": "条件必填缺失 | 检测到触发关键词，但未检测到要求项：试件/取样/送检 | 混凝土施工建议体现试件取样送检 | 触发：浇筑/砼",
+          "gap_reason": ""
+        },
+        {
+          "expected": "未填写浇筑方量",
+          "expected_tags": [
+            "concrete_param"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "条件必填缺失",
+            "category": "missing_items"
+          },
+          "evidence": "条件必填缺失 | 检测到触发关键词，但未检测到要求项：试件/取样/送检 | 混凝土施工建议体现试件取样送检 | 触发：浇筑/砼",
+          "gap_reason": ""
+        },
+        {
+          "expected": "试块数量、编号缺失",
+          "expected_tags": [
+            "concrete_param"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "条件必填缺失",
+            "category": "missing_items"
+          },
+          "evidence": "条件必填缺失 | 检测到触发关键词，但未检测到要求项：试件/取样/送检 | 混凝土施工建议体现试件取样送检 | 触发：浇筑/砼",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无坍落度检测记录",
+          "expected_tags": [
+            "concrete_param"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "条件必填缺失",
+            "category": "missing_items"
+          },
+          "evidence": "条件必填缺失 | 检测到触发关键词，但未检测到要求项：试件/取样/送检 | 混凝土施工建议体现试件取样送检 | 触发：浇筑/砼",
+          "gap_reason": ""
+        },
+        {
+          "expected": "漏浆问题未形成闭环处理",
+          "expected_tags": [
+            "closure_gap"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "缺陷处置闭环不足",
+            "category": "closure_issues"
+          },
+          "evidence": "缺陷处置闭环不足 | 检测到质量缺陷仅简单处置，未体现复检复查闭环。 | 建议补充：返工或修补措施、复检结果和闭环记录。 | 漏浆/离析/简单处理",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "缺陷处置闭环不足",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "养护措施记录不完整"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_019_batch_case_003",
+      "case_code": "case_003",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 8
+      },
+      "items": [
+        {
+          "expected": "日志由施工人员填写",
+          "expected_tags": [
+            "supervision_subject"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "监理记录主体疑似不规范",
+            "category": "logic_warnings"
+          },
+          "evidence": "监理记录主体疑似不规范 | 日志记录主体出现施工员，可能与监理日志责任边界不一致。 | 建议补充：监理人员签名及旁站/巡视记录，明确责任主体。 | 记录人：施工员",
+          "gap_reason": ""
+        },
+        {
+          "expected": "监理职责界限不清",
+          "expected_tags": [
+            "supervision_subject"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "监理记录主体疑似不规范",
+            "category": "logic_warnings"
+          },
+          "evidence": "监理记录主体疑似不规范 | 日志记录主体出现施工员，可能与监理日志责任边界不一致。 | 建议补充：监理人员签名及旁站/巡视记录，明确责任主体。 | 记录人：施工员",
+          "gap_reason": ""
+        },
+        {
+          "expected": "面积数据无依据",
+          "expected_tags": [
+            "measurement_recheck_ext"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "量化数据依据不足",
+            "category": "missing_items"
+          },
+          "evidence": "量化数据依据不足 | 检测到量化数据仅为约值，未体现测量复核或检测依据。 | 建议补充：测量方法、复核点位、实测数据与判定标准。 | 约数值/缺复核",
+          "gap_reason": ""
+        },
+        {
+          "expected": "交通导改措施记录不完整",
+          "expected_tags": [
+            "traffic_diversion"
+          ],
+          "matched": true,
+          "score": 0.125,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "交通导改措施记录不完整",
+            "category": "closure_issues"
+          },
+          "evidence": "交通导改措施记录不完整 | 检测到导改或警示标志问题，但未体现整改复查闭环。 | 建议补充：整改措施、复查结论与留证信息。 | 导改/警示标志问题",
+          "gap_reason": ""
+        },
+        {
+          "expected": "未注明旁站情况",
+          "expected_tags": [
+            "witness_supervision"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "监理记录主体疑似不规范",
+            "category": "logic_warnings"
+          },
+          "evidence": "监理记录主体疑似不规范 | 日志记录主体出现施工员，可能与监理日志责任边界不一致。 | 建议补充：监理人员签名及旁站/巡视记录，明确责任主体。 | 记录人：施工员",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "缺少：施工内容",
+        "交通导改措施记录不完整",
+        "监理记录主体疑似不规范",
+        "结论与问题描述可能不一致",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "量化数据依据不足"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_020_batch_case_004",
+      "case_code": "case_004",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 8
+      },
+      "items": [
+        {
+          "expected": "支座施工工艺描述错误",
+          "expected_tags": [
+            "process_quality_control"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "钢筋问题未整改",
+            "category": "logic_warnings"
+          },
+          "evidence": "钢筋问题未整改 | 检测到钢筋偏差后未整改即放行，存在质量风险。 | 建议补充：整改措施、复测结果和放行签认依据。 | 钢筋偏差/未调整",
+          "gap_reason": ""
+        },
+        {
+          "expected": "未进行隐蔽验收",
+          "expected_tags": [
+            "acceptance_procedure",
+            "hidden_acceptance"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "钢筋问题未整改",
+            "category": "logic_warnings"
+          },
+          "evidence": "钢筋问题未整改 | 检测到钢筋偏差后未整改即放行，存在质量风险。 | 建议补充：整改措施、复测结果和放行签认依据。 | 钢筋偏差/未调整",
+          "gap_reason": ""
+        },
+        {
+          "expected": "钢筋问题未整改",
+          "expected_tags": [
+            "process_quality_control"
+          ],
+          "matched": true,
+          "score": 0.125,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "钢筋问题未整改",
+            "category": "logic_warnings"
+          },
+          "evidence": "钢筋问题未整改 | 检测到钢筋偏差后未整改即放行，存在质量风险。 | 建议补充：整改措施、复测结果和放行签认依据。 | 钢筋偏差/未调整",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无测量复核记录",
+          "expected_tags": [
+            "measurement_recheck",
+            "measurement_recheck_ext"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "钢筋问题未整改",
+            "category": "logic_warnings"
+          },
+          "evidence": "钢筋问题未整改 | 检测到钢筋偏差后未整改即放行，存在质量风险。 | 建议补充：整改措施、复测结果和放行签认依据。 | 钢筋偏差/未调整",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无养护方案",
+          "expected_tags": [
+            "curing_plan"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "养护方案缺失",
+            "category": "missing_items"
+          },
+          "evidence": "养护方案缺失 | 检测到混凝土施工记录未体现养护方式和计划。 | 建议补充：养护措施、起止时间、责任人和巡查频次。 | 混凝土作业/无养护说明",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "钢筋问题未整改",
+        "结论与问题描述可能不一致",
+        "异议处理程序缺失",
+        "支座施工工艺描述异常",
+        "条件必填缺失",
+        "条件必填缺失",
+        "关键部位量化数据不足",
+        "养护方案缺失"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_021_batch_case_005",
+      "case_code": "case_005",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 7
+      },
+      "items": [
+        {
+          "expected": "高支架无专项方案",
+          "expected_tags": [
+            "special_plan"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "支架验收与构造控制不足",
+            "category": "missing_items"
+          },
+          "evidence": "支架验收与构造控制不足 | 检测到支架构造风险或验收资料缺失，放行依据不足。 | 建议补充：专项方案、计算书、验收签字及整改复查记录。 | 支架/验收/构造",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无验收记录",
+          "expected_tags": [
+            "acceptance_procedure"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "支架验收与构造控制不足",
+            "category": "missing_items"
+          },
+          "evidence": "支架验收与构造控制不足 | 检测到支架构造风险或验收资料缺失，放行依据不足。 | 建议补充：专项方案、计算书、验收签字及整改复查记录。 | 支架/验收/构造",
+          "gap_reason": ""
+        },
+        {
+          "expected": "整改无复查记录",
+          "expected_tags": [
+            "closure_gap"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "支架验收与构造控制不足",
+            "category": "missing_items"
+          },
+          "evidence": "支架验收与构造控制不足 | 检测到支架构造风险或验收资料缺失，放行依据不足。 | 建议补充：专项方案、计算书、验收签字及整改复查记录。 | 支架/验收/构造",
+          "gap_reason": ""
+        },
+        {
+          "expected": "口头整改无书面闭环",
+          "expected_tags": [
+            "closure_gap"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "支架验收与构造控制不足",
+            "category": "missing_items"
+          },
+          "evidence": "支架验收与构造控制不足 | 检测到支架构造风险或验收资料缺失，放行依据不足。 | 建议补充：专项方案、计算书、验收签字及整改复查记录。 | 支架/验收/构造",
+          "gap_reason": ""
+        },
+        {
+          "expected": "安全技术交底缺失",
+          "expected_tags": [
+            "special_plan"
+          ],
+          "matched": true,
+          "score": 0.1,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "安全技术交底缺失",
+            "category": "missing_items"
+          },
+          "evidence": "安全技术交底缺失 | 检测到高风险作业场景，未体现安全技术交底记录。 | 建议补充：交底内容、交底对象、签字和时间记录。 | 脚手架/高处/交底",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "缺少：施工内容",
+        "支架验收与构造控制不足",
+        "口头整改未形成闭环",
+        "结论与问题描述可能不一致",
+        "条件必填缺失",
+        "安全技术交底缺失",
+        "量化数据依据不足"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_022_batch_case_006",
+      "case_code": "case_006",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 10
+      },
+      "items": [
+        {
+          "expected": "出现塌方未停工",
+          "expected_tags": [
+            "stop_resume",
+            "stop_work_control"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "风险处置升级不足",
+            "category": "logic_warnings"
+          },
+          "evidence": "风险处置升级不足 | 检测到风险事件后仍继续施工，未体现停工或升级处置。 | 建议补充：停工指令、会商结论、加固措施与复工条件。 | 隐患/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "未组织专项会商",
+          "expected_tags": [
+            "risk_escalation_gap"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "风险处置升级不足",
+            "category": "logic_warnings"
+          },
+          "evidence": "风险处置升级不足 | 检测到风险事件后仍继续施工，未体现停工或升级处置。 | 建议补充：停工指令、会商结论、加固措施与复工条件。 | 隐患/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无监测数据",
+          "expected_tags": [
+            "detection_basis"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "风险处置升级不足",
+            "category": "logic_warnings"
+          },
+          "evidence": "风险处置升级不足 | 检测到风险事件后仍继续施工，未体现停工或升级处置。 | 建议补充：停工指令、会商结论、加固措施与复工条件。 | 隐患/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无加固方案",
+          "expected_tags": [
+            "risk_escalation_gap"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "风险处置升级不足",
+            "category": "logic_warnings"
+          },
+          "evidence": "风险处置升级不足 | 检测到风险事件后仍继续施工，未体现停工或升级处置。 | 建议补充：停工指令、会商结论、加固措施与复工条件。 | 隐患/继续施工",
+          "gap_reason": ""
+        },
+        {
+          "expected": "结论与事实矛盾",
+          "expected_tags": [
+            "logic_conflict"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "结论与问题描述可能不一致",
+            "category": "logic_warnings"
+          },
+          "evidence": "结论与问题描述可能不一致 | 文本同时出现问题描述与直接放行结论，建议核对是否已完成整改与复查。 | 建议补充：问题整改措施、复查记录及放行依据。 | 发现问题 + 合格/继续结论",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "风险处置升级不足",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "结论与问题描述可能不一致",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "条件必填缺失",
+        "量化数据依据不足"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_023_batch_case_007",
+      "case_code": "case_007",
+      "summary": {
+        "expected_total": 4,
+        "matched_expected": 4,
+        "unmatched_expected": 0,
+        "actual_total": 3
+      },
+      "items": [
+        {
+          "expected": "无具体部位",
+          "expected_tags": [
+            "template_text"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "模板化记录缺少部位工序与数据",
+            "category": "missing_items"
+          },
+          "evidence": "模板化记录缺少部位工序与数据 | 检测到记录使用泛化表述，缺少具体施工工序与量化数据支撑。 | 建议补充：具体施工部位、工序动作、实测数据与处理结果。 | 全线/综合/整体正常",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无工序说明",
+          "expected_tags": [
+            "template_text"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "模板化记录缺少部位工序与数据",
+            "category": "missing_items"
+          },
+          "evidence": "模板化记录缺少部位工序与数据 | 检测到记录使用泛化表述，缺少具体施工工序与量化数据支撑。 | 建议补充：具体施工部位、工序动作、实测数据与处理结果。 | 全线/综合/整体正常",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无任何数据支撑",
+          "expected_tags": [
+            "template_text"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "模板化记录缺少部位工序与数据",
+            "category": "missing_items"
+          },
+          "evidence": "模板化记录缺少部位工序与数据 | 检测到记录使用泛化表述，缺少具体施工工序与量化数据支撑。 | 建议补充：具体施工部位、工序动作、实测数据与处理结果。 | 全线/综合/整体正常",
+          "gap_reason": ""
+        },
+        {
+          "expected": "典型模板化套话",
+          "expected_tags": [
+            "template_text"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "模板化记录缺少部位工序与数据",
+            "category": "missing_items"
+          },
+          "evidence": "模板化记录缺少部位工序与数据 | 检测到记录使用泛化表述，缺少具体施工工序与量化数据支撑。 | 建议补充：具体施工部位、工序动作、实测数据与处理结果。 | 全线/综合/整体正常",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "缺少：施工内容",
+        "条件必填缺失",
+        "模板化记录缺少部位工序与数据"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_024_batch_case_008",
+      "case_code": "case_008",
+      "summary": {
+        "expected_total": 5,
+        "matched_expected": 5,
+        "unmatched_expected": 0,
+        "actual_total": 4
+      },
+      "items": [
+        {
+          "expected": "数量异常",
+          "expected_tags": [
+            "measurement_recheck_ext"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "关键部位量化数据不足",
+            "category": "missing_items"
+          },
+          "evidence": "关键部位量化数据不足 | 检测到关键部位检查缺少点位或实测量化数据。 | 建议补充：抽查点位、实测数值、偏差范围与判定结论。 | 抽查/间距/偏差",
+          "gap_reason": ""
+        },
+        {
+          "expected": "合格证不完整",
+          "expected_tags": [
+            "material_traceability"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "不合格材料处置不当",
+            "category": "logic_warnings"
+          },
+          "evidence": "不合格材料处置不当 | 检测到疑似不合格材料仍计划继续使用，存在质量风险。 | 建议补充：隔离标识、复检或退场处理及复查记录。 | 受潮结块/继续使用",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无复试报告",
+          "expected_tags": [
+            "material_traceability"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "不合格材料处置不当",
+            "category": "logic_warnings"
+          },
+          "evidence": "不合格材料处置不当 | 检测到疑似不合格材料仍计划继续使用，存在质量风险。 | 建议补充：隔离标识、复检或退场处理及复查记录。 | 受潮结块/继续使用",
+          "gap_reason": ""
+        },
+        {
+          "expected": "标识不清仍允许使用",
+          "expected_tags": [
+            "material_traceability"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "不合格材料处置不当",
+            "category": "logic_warnings"
+          },
+          "evidence": "不合格材料处置不当 | 检测到疑似不合格材料仍计划继续使用，存在质量风险。 | 建议补充：隔离标识、复检或退场处理及复查记录。 | 受潮结块/继续使用",
+          "gap_reason": ""
+        },
+        {
+          "expected": "材料台账缺失",
+          "expected_tags": [
+            "material_traceability"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "不合格材料处置不当",
+            "category": "logic_warnings"
+          },
+          "evidence": "不合格材料处置不当 | 检测到疑似不合格材料仍计划继续使用，存在质量风险。 | 建议补充：隔离标识、复检或退场处理及复查记录。 | 受潮结块/继续使用",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "不合格材料处置不当",
+        "条件必填缺失",
+        "关键部位量化数据不足",
+        "量化数据依据不足"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_025_batch_case_009",
+      "case_code": "case_009",
+      "summary": {
+        "expected_total": 4,
+        "matched_expected": 4,
+        "unmatched_expected": 0,
+        "actual_total": 5
+      },
+      "items": [
+        {
+          "expected": "张拉数据缺失",
+          "expected_tags": [
+            "tension_data"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "张拉关键数据缺失",
+            "category": "missing_items"
+          },
+          "evidence": "张拉关键数据缺失 | 检测到张拉作业但缺少关键过程数据，质量判定依据不足。 | 建议补充：张拉力、伸长量、回缩量、持荷及记录表。 | 张拉/数据缺失",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无复测记录",
+          "expected_tags": [
+            "measurement_recheck_ext",
+            "tension_data"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "张拉复测与第三方检测缺失",
+            "category": "missing_items"
+          },
+          "evidence": "张拉复测与第三方检测缺失 | 检测到张拉记录不完整，未体现复测或第三方检测。 | 建议补充：复测记录、第三方检测或见证资料。 | 张拉记录不完整",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无第三方检测",
+          "expected_tags": [
+            "special_equipment_acceptance",
+            "tension_data"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "张拉关键数据缺失",
+            "category": "missing_items"
+          },
+          "evidence": "张拉关键数据缺失 | 检测到张拉作业但缺少关键过程数据，质量判定依据不足。 | 建议补充：张拉力、伸长量、回缩量、持荷及记录表。 | 张拉/数据缺失",
+          "gap_reason": ""
+        },
+        {
+          "expected": "记录不完整仍认定合格",
+          "expected_tags": [
+            "logic_conflict"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "结论与问题描述可能不一致",
+            "category": "logic_warnings"
+          },
+          "evidence": "结论与问题描述可能不一致 | 文本同时出现问题描述与直接放行结论，建议核对是否已完成整改与复查。 | 建议补充：问题整改措施、复查记录及放行依据。 | 发现问题 + 合格/继续结论",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "问题闭环不完整",
+        "结论与问题描述可能不一致",
+        "条件必填缺失",
+        "张拉关键数据缺失",
+        "张拉复测与第三方检测缺失"
+      ],
+      "decision": "pass"
+    },
+    {
+      "id": "raw_026_batch_case_010",
+      "case_code": "case_010",
+      "summary": {
+        "expected_total": 4,
+        "matched_expected": 4,
+        "unmatched_expected": 0,
+        "actual_total": 4
+      },
+      "items": [
+        {
+          "expected": "停工原因不规范",
+          "expected_tags": [
+            "stop_resume",
+            "stop_work_control"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "停工管理流程缺失",
+            "category": "logic_warnings"
+          },
+          "evidence": "停工管理流程缺失 | 检测到停工场景但未体现停复工审批、巡查记录或复工条件。 | 建议补充：停工原因依据、审批记录、安全巡查与复工条件。 | 停工/审批/巡查",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无停复工审批记录",
+          "expected_tags": [
+            "special_plan",
+            "stop_resume"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "停工管理流程缺失",
+            "category": "logic_warnings"
+          },
+          "evidence": "停工管理流程缺失 | 检测到停工场景但未体现停复工审批、巡查记录或复工条件。 | 建议补充：停工原因依据、审批记录、安全巡查与复工条件。 | 停工/审批/巡查",
+          "gap_reason": ""
+        },
+        {
+          "expected": "无安全巡查记录",
+          "expected_tags": [
+            "stop_resume"
+          ],
+          "matched": true,
+          "score": 0.0,
+          "matched_tags_overlap": 1,
+          "matched_finding": {
+            "title": "停工管理流程缺失",
+            "category": "logic_warnings"
+          },
+          "evidence": "停工管理流程缺失 | 检测到停工场景但未体现停复工审批、巡查记录或复工条件。 | 建议补充：停工原因依据、审批记录、安全巡查与复工条件。 | 停工/审批/巡查",
+          "gap_reason": ""
+        },
+        {
+          "expected": "停工管理流程缺失",
+          "expected_tags": [
+            "stop_resume",
+            "stop_work_control"
+          ],
+          "matched": true,
+          "score": 0.1,
+          "matched_tags_overlap": 2,
+          "matched_finding": {
+            "title": "停工管理流程缺失",
+            "category": "logic_warnings"
+          },
+          "evidence": "停工管理流程缺失 | 检测到停工场景但未体现停复工审批、巡查记录或复工条件。 | 建议补充：停工原因依据、审批记录、安全巡查与复工条件。 | 停工/审批/巡查",
+          "gap_reason": ""
+        }
+      ],
+      "actual_unmapped_titles": [
+        "问题闭环不完整",
+        "缺少：施工内容",
+        "停工管理流程缺失",
+        "条件必填缺失"
+      ],
+      "decision": "pass"
+    }
+  ]
+}
